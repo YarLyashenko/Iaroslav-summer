@@ -19,12 +19,16 @@ import static summer.Endpoints.API_URL;
 import static summer.Endpoints.AUTH;
 
 public abstract class BaseTest {
-    public static final Random RANDOM = new Random();
-    public static final String ERROR_PATH = "error";
-    public static final String TOKEN_PATH = "token";
-    public static final String UNAUTHORIZED_ERROR = "Unauthorized";
-    public static final String MISSING_PARAM_ERROR = "Missing Param";
-    public static final String EXPECTED_NUMERIC_PARAM_ERROR = "Expected Numeric Param";
+    static final Random RANDOM = new Random();
+    static final String ERROR_PATH = "error";
+    static final String TOKEN_PATH = "token";
+    static final String UNAUTHORIZED_ERROR = "Unauthorized";
+    static final String MISSING_PARAM_ERROR = "Missing Param";
+    static final String EXPECTED_NUMERIC_PARAM_ERROR = "Expected Numeric Param";
+
+    static final String FIRST_PARAMETER_NAME = "a";
+    static final String SECOND_PARAMETER_NAME = "b";
+    static final String RESULT_PATH = "result";
 
 
     @BeforeClass
