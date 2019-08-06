@@ -3,8 +3,13 @@ package summer;
 import io.restassured.RestAssured;
 import io.restassured.authentication.PreemptiveBasicAuthScheme;
 import org.junit.BeforeClass;
+import org.yaml.snakeyaml.Yaml;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.Map;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import static io.restassured.RestAssured.given;
 import static org.apache.http.HttpStatus.SC_OK;
@@ -23,12 +28,17 @@ public abstract class BaseTest {
 
 
     @BeforeClass
-    public static void setUp() {
+    public static void setUp() throws FileNotFoundException {
         RestAssured.baseURI = API_URL;
         RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
 
+        Map<String, Object> credentials = new Yaml().load(new FileInputStream("credentials.yml"));
+        String credentialsBody = credentials.entrySet().stream()
+                .map(e -> String.format("\"%s\":\"%s\"", e.getKey(), e.getValue()))
+                .collect(Collectors.joining(", ", "{", "}"));
+
         String token = given()
-                .body("{\"username\": \"candidate\", \"password\": \"2019\"}")
+                .body(credentialsBody)
                 .when()
                 .post(AUTH)
                 .then()

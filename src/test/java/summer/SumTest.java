@@ -17,8 +17,8 @@ public class SumTest extends BaseTest {
 
     @Test
     public void withCorrectParametersShouldReturnSum() {
-        int firstParam = RANDOM.nextInt();
-        int secondParam = RANDOM.nextInt();
+        long firstParam = RANDOM.nextLong();
+        long secondParam = RANDOM.nextLong();
 
         given()
                 .param(FIRST_PARAMETER_NAME, firstParam)
@@ -34,8 +34,8 @@ public class SumTest extends BaseTest {
 
     @Test
     public void withCorrectParametersReverseOrderShouldReturnSum() {
-        int firstParam = RANDOM.nextInt();
-        int secondParam = RANDOM.nextInt();
+        long firstParam = RANDOM.nextLong();
+        long secondParam = RANDOM.nextLong();
 
         given()
                 .param(SECOND_PARAMETER_NAME, secondParam)
