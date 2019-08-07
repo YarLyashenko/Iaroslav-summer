@@ -25,6 +25,7 @@ public abstract class BaseTest {
     static final String UNAUTHORIZED_ERROR = "Unauthorized";
     static final String MISSING_PARAM_ERROR = "Missing Param";
     static final String EXPECTED_NUMERIC_PARAM_ERROR = "Expected Numeric Param";
+    static final String TOO_MANY_REQUESTS_ERROR = "Too Many Requests";
 
     static final String FIRST_PARAMETER_NAME = "a";
     static final String SECOND_PARAMETER_NAME = "b";
