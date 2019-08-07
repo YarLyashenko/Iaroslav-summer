@@ -1,3 +1,8 @@
+To run tests, simply execute:
+```bash
+docker-compose -f docker-compose.test.yml up --build
+```
+
 # Summer tests
 
 Please create a new branch before starting to work on tasks. You can
