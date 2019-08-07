@@ -7,7 +7,6 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static io.restassured.RestAssured.given;
 import static org.apache.http.HttpStatus.SC_OK;
@@ -38,13 +37,10 @@ public class SumLimitedTest extends BaseTest {
         //when I send many responses for some given time
 
         while (System.currentTimeMillis() < start + seconds * 1000) {
-            responses.addAll(
-                    Stream.generate(() -> given()
-                            .param(FIRST_PARAMETER_NAME, firstParamValue)
-                            .param(SECOND_PARAMETER_NAME, secondParamValue)
-                            .get(SUM_LIMITED))
-                            .limit(20)
-                            .collect(Collectors.toList()));
+            responses.add(given()
+                    .param(FIRST_PARAMETER_NAME, firstParamValue)
+                    .param(SECOND_PARAMETER_NAME, secondParamValue)
+                    .get(SUM_LIMITED));
         }
 
         //then some requests should be failed according to throughput
