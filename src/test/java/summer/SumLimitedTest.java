@@ -17,6 +17,10 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static summer.Endpoints.SUM_LIMITED;
 
+/*
+Task: Write tests for `/sumLimited` endpoint. It has a rate limiting mechanism implemented, so that no more then 1 request
+per second is served.
+ */
 public class SumLimitedTest extends BaseTest {
 
     private static int THROUGHPUT = 1;

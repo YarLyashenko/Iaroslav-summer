@@ -21,51 +21,51 @@ public class SumLazyTest extends BaseTest {
     @Test
     public void withCorrectParametersShouldReturnSumInTwoSeconds() {
 
-        long firstParam = RANDOM.nextLong();
-        long secondParam = RANDOM.nextLong();
+        long firstParamValue = RANDOM.nextLong();
+        long secondParamValue = RANDOM.nextLong();
 
         given()
-                .param(FIRST_PARAMETER_NAME, firstParam)
-                .param(SECOND_PARAMETER_NAME, secondParam)
+                .param(FIRST_PARAMETER_NAME, firstParamValue)
+                .param(SECOND_PARAMETER_NAME, secondParamValue)
                 .when()
                 .get(SUM_LAZY)
                 .then()
                 .assertThat()
                 .statusCode(equalTo(SC_OK))
                 .body(RESULT_PATH, notNullValue())
-                .body(RESULT_PATH, equalTo(firstParam + secondParam))
+                .body(RESULT_PATH, equalTo(firstParamValue + secondParamValue))
                 .time(lessThan(LAZY_TIMEOUT_MILLISECONDS));
 
     }
 
     @Test
     public void withCorrectParametersReverseOrderShouldReturnSumInTwoSeconds() {
-        long firstParam = RANDOM.nextLong();
-        long secondParam = RANDOM.nextLong();
+        long firstParamValue = RANDOM.nextLong();
+        long secondParamValue = RANDOM.nextLong();
 
         given()
-                .param(SECOND_PARAMETER_NAME, secondParam)
-                .param(FIRST_PARAMETER_NAME, firstParam)
+                .param(SECOND_PARAMETER_NAME, secondParamValue)
+                .param(FIRST_PARAMETER_NAME, firstParamValue)
                 .when()
                 .get(SUM_LAZY)
                 .then()
                 .assertThat()
                 .statusCode(equalTo(SC_OK))
                 .body(RESULT_PATH, notNullValue())
-                .body(RESULT_PATH, equalTo(firstParam + secondParam))
+                .body(RESULT_PATH, equalTo(firstParamValue + secondParamValue))
                 .time(lessThan(LAZY_TIMEOUT_MILLISECONDS));
     }
 
     //is it a correct behaviour?
     @Test
     public void withMaxLongParametersShouldReturnOverflowSumInTwoSeconds() {
-        long firstParam = Long.MAX_VALUE;
-        long secondParam = 1;
+        long firstParamValue = Long.MAX_VALUE;
+        long secondParamValue = 1;
         long result = Long.MIN_VALUE;
 
         given()
-                .param(SECOND_PARAMETER_NAME, secondParam)
-                .param(FIRST_PARAMETER_NAME, firstParam)
+                .param(SECOND_PARAMETER_NAME, secondParamValue)
+                .param(FIRST_PARAMETER_NAME, firstParamValue)
                 .when()
                 .get(SUM_LAZY)
                 .then()
