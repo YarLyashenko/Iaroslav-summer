@@ -1,0 +1,20 @@
+version: '3'
+services:
+  summer:
+    container_name: summer
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 4000:4000
+    command: /bin/summer
+
+  run-tests:
+    container_name: maven
+    network_mode: host
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    depends_on:
+      - summer
+    command: mvn test
